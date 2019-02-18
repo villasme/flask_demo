@@ -1,5 +1,5 @@
 from flask import Flask
-from app.model.book import db
+from app.model.base import db
 
 def createApp():
     "创建app"
@@ -7,6 +7,7 @@ def createApp():
     app.config.from_object('app.secure')
     app.config.from_object('app.setting')
     register_blueprint(app)
+
     db.init_app(app)
     db.create_all(app=app)
     return app
