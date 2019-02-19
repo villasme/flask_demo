@@ -1,5 +1,8 @@
 from flask import Flask
 from app.model.base import db
+from flask_login import LoginManager
+
+login_manager = LoginManager()
 
 def createApp():
     "创建app"
@@ -10,6 +13,7 @@ def createApp():
 
     db.init_app(app)
     db.create_all(app=app)
+    login_manager.init_app(app)
     return app
 
 def register_blueprint(app):
