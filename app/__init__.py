@@ -12,8 +12,13 @@ def createApp():
     register_blueprint(app)
 
     db.init_app(app)
-    db.create_all(app=app)
+    # db.create_all(app=app)
     login_manager.init_app(app)
+    login_manager.login_view = 'web.login'
+    login_manager.login_message = '请先登录'
+
+    with app.app_context():
+        db.create_all()
     return app
 
 def register_blueprint(app):
